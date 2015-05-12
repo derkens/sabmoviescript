@@ -56,17 +56,22 @@ except:
 	logger.logging.debug("Kodi is unreachable")
 	pass
 if not r2['result']['limits']['total'] == 0:
-	fanart = r2['result']['movies'][0]['art']['fanart']
-	fanart = urllib.unquote(fanart).decode('utf8')
-	fanart = fanart[8:].rstrip("/")
-	if sab.cat == "kinderfilms":
-		fanartloc = "/storage/xbmc/Fanart/KidsFanart"
+	if 'fanart' in r2:
+		fanart = r2['result']['movies'][0]['art']['fanart']
+		fanart = urllib.unquote(fanart).decode('utf8')
+		fanart = fanart[8:].rstrip("/")
+		if sab.cat == "kinderfilms":
+			fanartloc = "/storage/xbmc/Fanart/KidsFanart"
+		else:
+			fanartloc = "/storage/xbmc/Fanart/MovieFanArt"
+		fanfile = os.path.join(fanartloc, mmmoviename + ".jpg")
+		if not os.path.isfile(fanfile):
+			 urllib.urlretrieve(fanart, fanfile)
+			 logger.logging.debug("Saving backdrop to:" + fanfile)
 	else:
-		fanartloc = "/storage/xbmc/Fanart/MovieFanArt"
-	fanfile = os.path.join(fanartloc, mmmoviename + ".jpg")
-	if not os.path.isfile(fanfile):
-		 urllib.urlretrieve(fanart, fanfile)
-		 logger.logging.debug("Saving backdrop to:" + fanfile)
+		logger.logging.debug("Kodi library has no backdrop info")
+		pass
+
 	tagline = r2['result']['movies'][0]['tagline']
 else:
 	logger.logging.debug("Movie not found in Kodi library")
