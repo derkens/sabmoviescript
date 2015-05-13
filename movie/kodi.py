@@ -8,23 +8,6 @@ import urllib2
 import time
 logger.logging.debug ("We arrived at kodi")
 
-kodi_host = config.kodi_host
-kodi_port = config.kodi_port
-
-'''
-data = {
-	"jsonrpc":"2.0",
-	"method":"VideoLibrary.GetEpisodes",
-	"params":{"sort": {"order": "ascending", "method": "title"}, "filter": {"operator": "contains", "field": "title", "value": epname}, "properties": ["file"]},
-	"id" : 1
-}
-req = urllib2.Request('http://'+kodi_host+':'+kodi_port+'/jsonrpc')
-req.add_header('Content-Type', 'application/json')
-r2 = urllib2.urlopen(req, json.dumps(data))
-r2 = r2.read()
-r2 = json.loads(r2)
-xbmcepid = r2['result']['episodes'][0]['episodeid']
-'''
 
 data = {
 	"jsonrpc":"2.0",
@@ -32,7 +15,7 @@ data = {
 	"params":{"directory": move.scanloc },
 	"id" : 1
 }
-req = urllib2.Request('http://'+kodi_host+':'+kodi_port+'/jsonrpc')
+req = urllib2.Request('http://'+config.kodi_host+':'+config.kodi_port+'/jsonrpc')
 req.add_header('Content-Type', 'application/json')
 response = urllib2.urlopen(req, json.dumps(data))
 response = json.loads(response.read())
@@ -47,7 +30,7 @@ try:
 		"params":{"sort": {"order": "ascending", "method": "title"}, "filter": {"operator": "contains", "field": "title", "value": mmmoviename}, "properties": ["title", "art", "tagline"]},
 		"id" : 1
 	}
-	req = urllib2.Request('http://'+kodi_host+':'+kodi_port+'/jsonrpc')
+	req = urllib2.Request('http://'+config.kodi_host+':'+config.kodi_port+'/jsonrpc')
 	req.add_header('Content-Type', 'application/json')
 	r2 = urllib2.urlopen(req, json.dumps(data))
 	r2 = r2.read()
