@@ -28,7 +28,23 @@ response_body  = json.loads(response_body)
 tagline = response_body['tagline']
 mvdbimg = response_body['backdrop_path']
 title = response_body['title']
+ortitle = response_body['original_title']
 rlsdate = response_body['release_date']
 year,month,date = rlsdate.split("-")
 #if mvdbimg is not None:
 	#print "http://image.tmdb.org/t/p/original" + mvdbimg
+
+headers = {
+  'Accept': 'application/json'
+}
+params = urllib.urlencode({'api_key': config.tmdbapi, 'language' : 'nl'})
+request = Request('http://api.themoviedb.org/3/movie/' + str(mdbid) +"?" + params)
+logger.logging.debug ("opening url :" + 'http://api.themoviedb.org/3/movie/' + str(mdbid) +"?" + params)
+response_body = urlopen(request).read()
+response_body  = json.loads(response_body)
+title = response_body['title']
+
+if ortitle != title:
+	pass
+else:
+	title = ortitle
