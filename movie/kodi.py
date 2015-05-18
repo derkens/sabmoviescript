@@ -36,7 +36,7 @@ try:
 	r2 = r2.read()
 	r2 = json.loads(r2)
 except:
-	logger.logging.debug("Kodi is unreachable")
+	logger.logging.exception("Exception: ")
 	pass
 if not r2['result']['limits']['total'] == 0:
 	if 'fanart' in r2:

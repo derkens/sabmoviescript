@@ -88,6 +88,7 @@ else:
 			mvloc2 = config.get("moviemeter", "movielocation2")
 			tmdbapi = config.get("moviemeter", "moviedatabaseapi")
 		except (configparser.NoOptionError, ValueError):
+			logger.logging.exception("exception:")
 			pass
 
 		try:
@@ -99,6 +100,7 @@ else:
 				web_root = web_root + "/"
 
 		except configparser.NoOptionError:
+			logger.logging.exception("exception:")
 			pass
 
 	except EnvironmentError:
