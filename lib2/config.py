@@ -1,3 +1,6 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+
 import os.path
 import sys
 import httplib, urllib, urllib2, json
@@ -41,8 +44,6 @@ if not os.path.isfile(config_filename):
 
 else:
 	try:
-		logger.logging.info ("Loading config from " + config_filename)
-
 		with open(config_filename, "r") as fp:
 			config.readfp(fp)
 
@@ -51,8 +52,8 @@ else:
 		port = config.get("SickBeard", "port")
 		api_key = config.get("SickBeard", "api_key")
 		lvl = config.get("General", "loglevel")
-		logger.logger1.setLevel(lvl)
-
+		logger.logging.setLevel(lvl)
+		logger.logging.info ("Loading config from " + config_filename)
 		if not api_key:
 			logger.logging.error ("Sick Beard api key setting is empty, please fill this field in settings.cfg")
 			sys.exit(1)
