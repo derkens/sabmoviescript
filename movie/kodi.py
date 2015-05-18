@@ -32,15 +32,14 @@ try:
 	}
 	req = urllib2.Request('http://'+config.kodi_host+':'+config.kodi_port+'/jsonrpc')
 	req.add_header('Content-Type', 'application/json')
-	r2 = urllib2.urlopen(req, json.dumps(data))
-	r2 = r2.read()
-	r2 = json.loads(r2)
+	response = urllib2.urlopen(req, json.dumps(data))
+	response = json.loads(response.read())
 except:
 	logger.logging.exception("Exception: ")
 	pass
-if not r2['result']['limits']['total'] == 0:
-	if 'fanart' in r2:
-		fanart = r2['result']['movies'][0]['art']['fanart']
+if not response['result']['limits']['total'] == 0:
+	if 'fanart' in response:
+		fanart = response['result']['movies'][0]['art']['fanart']
 		fanart = urllib.unquote(fanart).decode('utf8')
 		fanart = fanart[8:].rstrip("/")
 		if sab.cat == "kinderfilms":
@@ -55,6 +54,6 @@ if not r2['result']['limits']['total'] == 0:
 		logger.logging.debug("Kodi library has no backdrop info")
 		pass
 
-	tagline = r2['result']['movies'][0]['tagline']
+	tagline = response['result']['movies'][0]['tagline']
 else:
 	logger.logging.debug("Movie not found in Kodi library")

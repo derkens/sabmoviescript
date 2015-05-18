@@ -3,7 +3,6 @@
 #
 #  tmdb.py
 #
-#import urllib2, urllib, json
 from urllib2 import Request, urlopen
 from __main__ import *
 logger.logging.debug ("We arrived at tmdb")
@@ -31,8 +30,6 @@ title = response_body['title']
 ortitle = response_body['original_title']
 rlsdate = response_body['release_date']
 year,month,date = rlsdate.split("-")
-#if mvdbimg is not None:
-	#print "http://image.tmdb.org/t/p/original" + mvdbimg
 
 headers = {
   'Accept': 'application/json'

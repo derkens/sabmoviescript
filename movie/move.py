@@ -32,7 +32,6 @@ logger.logging.debug("making directory " + newdir)
 if move:
 	os.mkdir (newdir)
 if dvd is not None:
-	#print "dvd"
 	if move:
 		copy_tree (movieloc, newdir)
 else:
