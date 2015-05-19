@@ -8,7 +8,7 @@ from __main__ import *
 from distutils.dir_util import copy_tree
 import shutil
 
-move = True # False for "dry run"
+move = False # False for "dry run"
 
 try:
 	title = mm.title
