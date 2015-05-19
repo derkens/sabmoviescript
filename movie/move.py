@@ -8,7 +8,7 @@ from __main__ import *
 from distutils.dir_util import copy_tree
 import shutil
 
-move = False # False for "dry run"
+move = config.mvmove # adjust this in your settings.cfg
 
 try:
 	title = mm.title

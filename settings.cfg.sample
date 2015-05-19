@@ -81,3 +81,4 @@ movielocation=
 movielocation2=
 app_token=
 moviedatabaseapi=
+move=0 ;Use 0 for dry run, nothing is moved. 1 for actual use

@@ -87,6 +87,7 @@ else:
 			mvtoken = config.get("moviemeter", "app_token")
 			mvloc2 = config.get("moviemeter", "movielocation2")
 			tmdbapi = config.get("moviemeter", "moviedatabaseapi")
+			mvmove = int(config.get("moviemeter", "move"))
 		except (configparser.NoOptionError, ValueError):
 			logger.logging.exception("exception:")
 			pass
