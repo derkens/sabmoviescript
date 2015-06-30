@@ -65,7 +65,7 @@ def karma():
 				mmmoviename = re.split('.\d\d\d\d', moviename, 1, 0)[0]
 				mmmoviename = mmmoviename.strip()
 				extension = os.path.splitext(file)[1]
-				return (mmmoviename,movieloc,extension,subloc,subext,dvd)
+	return (mmmoviename,movieloc,extension,subloc,subext,dvd)
 
 
 def default():
