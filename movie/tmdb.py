@@ -41,6 +41,16 @@ response_body = urlopen(request).read()
 response_body  = json.loads(response_body)
 title = response_body['title']
 
+if sab.cat == "kinderfilms":
+	fanartloc = "/storage/xbmc/Fanart/KidsFanart"
+else:
+	fanartloc = "/storage/xbmc/Fanart/MovieFanArt"
+fanfile = os.path.join(fanartloc, title +"(" + year + ")" + ".jpg")
+if not os.path.isfile(fanfile):
+	 urllib.urlretrieve("https://image.tmdb.org/t/p/original" + mvdbimg, fanfile)
+	 logger.logging.debug("Saving backdrop to:" + fanfile)
+
+
 if ortitle != title:
 	pass
 else:

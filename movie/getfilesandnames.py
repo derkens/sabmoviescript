@@ -76,6 +76,7 @@ def default():
 	for root, dirs, files in os.walk(sab.path):
 		for file in files:
 			if file.endswith(tuple(ext)):
+				print file
 				movieloc = (os.path.join(root, file))
 				moviename = os.path.basename(sab.path)
 				moviename = moviename.replace(".", " ")
